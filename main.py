@@ -64,16 +64,36 @@ def index():
 # >>> result[0].username
 # 'Webb'
 
+# User01 is Webb.
+# We'll get "You are now logged in!" after connecting "localhost:3000/".
+
+# User01 is Tom.
+# We'll get "You need to log in!" after connecting "localhost:3000/".
+
 @app.route("/logout")
 @login_required
 def logout():
 	logout_user()
 	return "You are now logged out!"
 
+# User01 is Webb.
+# Use "localhost:3000/" to login.
+# We'll get "You are now logged out!" after connecting "localhost:3000/logout".
+
+# User01 is Tom.
+# We'll get "Unauthorized" after connecting "localhost:3000/logout".
+
 @app.route("/home")
 @login_required
 def home():
-	return "The current user is " + current_user.username 
+	return "The current user is " + current_user.username + "!"
+
+# User01 is Webb.
+# Use "localhost:3000/" to login.
+# We'll get "The current user is Webb!" after connecting "localhost:3000/home".
+
+# User01 is Tom.
+# We'll get "Unauthorized" after connecting "localhost:3000/home".
 
 if __name__ == "__main__":
     app.run(debug = True, host = "0.0.0.0", port = 3000)
