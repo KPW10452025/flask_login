@@ -70,5 +70,10 @@ def logout():
 	logout_user()
 	return "You are now logged out!"
 
+@app.route("/home")
+@login_required
+def home():
+	return "The current user is " + current_user.username 
+
 if __name__ == "__main__":
     app.run(debug = True, host = "0.0.0.0", port = 3000)
